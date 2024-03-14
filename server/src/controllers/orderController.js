@@ -24,6 +24,23 @@ const createNewOrder = async (req, res) => {
   }
 };
 
+// Get all orders
+const getOrder = async (req, res) => {
+  try {
+    const data = await model.orders.findAll();
+    return responseData(res,`Get all orders successfully`,200,data
+    );
+  } catch (error) {
+    console.error(`Error when getting all orders : ${error}`);
+    return responseData(
+      res,
+      `Failed to get all orders`,
+      500,
+      null
+    );
+  }
+};
+
 // Get order by user_id
 const getOrderByUser = async (req, res) => {
   let { user_id } = req.params;
@@ -149,4 +166,4 @@ const deleteOrder = async (req, res) => {
 }
 
 
-export { createNewOrder, getOrderByUser, getOrderByFood , updateOrder, deleteOrder};
+export { createNewOrder,getOrder, getOrderByUser, getOrderByFood , updateOrder, deleteOrder};
