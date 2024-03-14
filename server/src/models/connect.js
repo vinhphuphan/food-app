@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
-import config from "../config/config.js";
+import { dbConfig } from "../config/config.js";
 
-const sequelize = new Sequelize(config.database, config.user, config.pass, {
-  host: config.host,
-  port: config.port,
-  dialect: config.dialect,
+const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.pass, {
+  host: dbConfig.host,
+  port: dbConfig.port,
+  dialect: dbConfig.dialect,
 });
 
 export default sequelize;
