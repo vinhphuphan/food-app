@@ -49,6 +49,12 @@ BASE_URL : http://localhost:8080
      - **Endpoint:** `/order/create`
      - **Request:** `{ user_id, food_id, amount }`
      - **Response:** `{ message, code, data }`
+    
+  2. **Get All Order** 
+     - **Method:** GET
+     - **Endpoint:** `/order`
+     - **Request:** ``
+     - **Response:** `{ message, code, data }`
 
   2. **Get Order By Food** 
      - **Method:** GET
