@@ -3,7 +3,7 @@ import sequelize from "../models/connect.js";
 import { responseData } from "../config/config.js";
 
 const model = initModels(sequelize);
-
+// Rate function
 const rateRes = async (req, res) => {
   let { user_id, res_id, amount } = req.body;
 
@@ -28,6 +28,7 @@ const rateRes = async (req, res) => {
   }
 };
 
+// Get rates by restaurant_id
 const getRatesByResId = async (req, res) => {
   try {
     let { res_id } = req.params;
@@ -43,6 +44,7 @@ const getRatesByResId = async (req, res) => {
   }
 };
 
+// Get rates by user_id
 const getRatesByUserId = async (req, res) => {
   try {
     let { user_id } = req.params;
