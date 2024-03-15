@@ -3,9 +3,9 @@ import { likeRes, unlikeRes, getLikesByResId, getLikesByUserId } from "../contro
 
 const likeRouter = express();
 
-likeRouter.post("/create", likeRes);
-likeRouter.delete("/delete", unlikeRes);
-likeRouter.get("/get-likes-by-res/:res_id", getLikesByResId);
-likeRouter.get("/get-likes-by-user/:user_id", getLikesByUserId);
+likeRouter.post("", likeRes);
+likeRouter.delete("", unlikeRes);
+likeRouter.get("/by-res/:res_id", getLikesByResId);
+likeRouter.get("/by-user/:user_id", getLikesByUserId);
 
 export default likeRouter;

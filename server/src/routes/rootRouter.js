@@ -5,8 +5,8 @@ import orderRouter from "./orderRouter.js";
 
 const rootRouter = express()
 
-rootRouter.use("/like", likeRouter );
-rootRouter.use("/rate", rateRouter );
-rootRouter.use("/order" , orderRouter);
+rootRouter.use("/likes", likeRouter );
+rootRouter.use("/rates", rateRouter );
+rootRouter.use("/orders" , orderRouter);
 
 export default rootRouter;

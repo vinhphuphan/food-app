@@ -3,12 +3,12 @@ import { createNewOrder, getOrder, getOrderByUser, getOrderByFood, updateOrder, 
 
 const orderRouter = express();
 
-orderRouter.post("/create", createNewOrder);
-orderRouter.get("/", getOrder)
-orderRouter.get("/get-orders-by-user/:user_id", getOrderByUser);
-orderRouter.get("/get-orders-by-food/:food_id", getOrderByFood);
-orderRouter.put("/:order_code", updateOrder);
-orderRouter.delete("/:order_code", deleteOrder);
+orderRouter.post("", createNewOrder);
+orderRouter.get("", getOrder)
+orderRouter.get("/by-user/:user_id", getOrderByUser);
+orderRouter.get("/by-food/:food_id", getOrderByFood);
+orderRouter.put("/:code", updateOrder);
+orderRouter.delete("/:code", deleteOrder);
 
 
 export default orderRouter;
