@@ -5,17 +5,27 @@ import { nanoid } from "nanoid";
 
 
 const model = initModels(sequelize);
-// Create new order API
+// Create new order
 const createNewOrder = async (req, res) => {
-  let { user_id, food_id, amount } = req.body;
+  const { user_id, food_id, amount } = req.body;
 
   try {
-    const order_code = nanoid(10);
+    // Kiểm tra xem user_id và food_id có tồn tại hay không
+    const userExists = await model.users.findOne({ where: { id: user_id } });
+    const foodExists = await model.foods.findOne({ where: { id: food_id } });
+
+    if (!foodExists) {
+      return responseData(res, "Food does not exist", 400, null);
+    }
+
+    if (!userExists) {
+      return responseData(res, "User does not exist", 400, null);
+    }
+
     const new_order = await model.orders.create({
       user_id: user_id,
       food_id: food_id,
       amount: amount,
-      code: order_code,
     });
     return responseData(res, "Order created successfully", 200, new_order);
   } catch (error) {
@@ -90,80 +100,7 @@ const getOrderByFood = async (req, res) => {
   }
 };
 
-// Update the order
-const updateOrder = async (req, res) => {
-    let { order_code } = req.params;
-    let newOrder = {
-        user_id : req.body.user_id,
-        food_id : req.body.food_id,
-        amount :  req.body.amount
-    }
-    try {
-        // Find the old order
-        const oldOrder = await model.orders.findOne({
-            where: {
-                code: order_code
-            }
-        });
-        // Return not found message
-        if (!oldOrder) {
-            return responseData(res, `Order with code ${order_code} not found`, 404);
-        }
-        // Check if the new order is the same as the old order
-        const isSameOrder = (
-            newOrder.user_id === oldOrder.user_id &&
-            newOrder.food_id === oldOrder.food_id &&
-            newOrder.amount === oldOrder.amount
-        );
-
-        if (isSameOrder) {
-            // If the new order is the same as the old order, return the old order
-            return responseData(res, "Order remains unchanged", 200, oldOrder);
-        }
-        // Update order
-        const updatedOrder = await model.orders.update(
-            newOrder,
-            { 
-                where: { code : order_code },
-            }
-        );
-        // Return the updated order
-        return responseData(res, "Order updated successfully", 200, newOrder);
-
-    } catch (error) {
-        console.error(`Error when update order by order_code : ${error}`);
-        return responseData(res,`Failed to update order by order_code`,500);
-    }
-}
-
-// Delete the order
-const deleteOrder = async (req, res) => {
-    let { order_code } = req.params;
-    
-    try {
-        // Find the order
-        const orderToDelete = await model.orders.findOne({
-            where: {
-                code: order_code
-            }
-        });
-
-        // Check if the order exists
-        if (!orderToDelete) {
-            return responseData(res, `Order with code ${order_code} not found`, 404);
-        }
-        
-        // Delete order
-        await model.orders.destroy({ where: { code : order_code }});
-
-        // Return the updated order
-        return responseData(res, "Delete order successfully", 200, orderToDelete);
-
-    } catch (error) {
-        console.error(`Error when delete order by order_code : ${error}`);
-        return responseData(res,`Failed to delete order by order_code`,500);
-    }
-}
 
 
-export { createNewOrder,getOrder, getOrderByUser, getOrderByFood , updateOrder, deleteOrder};
+
+export { createNewOrder,getOrder, getOrderByUser, getOrderByFood};
