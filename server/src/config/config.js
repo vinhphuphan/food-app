@@ -11,7 +11,7 @@ const dbConfig = {
 }
 
 const responseData = (res, message, code, data) => {
-  res.json({
+  res.status(code).json({
       message,
       code,
       data,
