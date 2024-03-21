@@ -12,6 +12,9 @@ The `database` folder contains schema design and SQL code to design and implemen
 * `orders`: Keeps track of orders placed by users, including ordered items and total price.
 * `reviews`: Stores user reviews for restaurants.
 
+<p align="center"><img style="align: center;" src="https://raw.githubusercontent.com/vinhphuphan/food-app/main/database/schema.png" width=600></p>
+<h4 align="center">Figure 1. Database schema</h4>
+
 **Server**
 
 The `server` folder contains Node.js code for the backend. The server handles various requests from the frontend, including user authentication, restaurant listing, food item retrieval, order placement, and review writing.
