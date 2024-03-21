@@ -36,10 +36,12 @@ npm install
 3. Create a `.env` file in the root directory with the following variables:
 
 ```
-DB_HOST=localhost
+DB_DATABASE=your_database_name
 DB_USER=your_username
 DB_PASSWORD=your_password
-DB_NAME=your_database_name
+DB_HOST=localhost
+DB_PORT=port
+DB_DIALECT=mysql
 ```
 
 4. Replace `your_username`, `your_password`, and `your_database_name` with your database credentials.
