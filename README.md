@@ -2,6 +2,8 @@
 
 This repository contains the back-end code for a food ordering app. Users can order food from restaurants using this app.
 
+<p align="center"><img style="align: center;" src="https://github.com/vinhphuphan/food-app/blob/main/images/HomeScreen.png?raw=true"; srcset="https://github.com/vinhphuphan/food-app/blob/main/images/HomeScreen.png?raw=true 3x" width=300></p>
+
 **Database**
 
 The `database` folder contains schema design and SQL code to design and implement the database. It includes tables for users, restaurants, food items, orders, and reviews.
